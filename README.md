@@ -1,2 +1,3 @@
 # Coursera-Algorithms
-The assignments
+Assignments
+
