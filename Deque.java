@@ -4,32 +4,28 @@ public class Deque<Item> implements Iterable<Item> {
 	private Node first = null;
 	private Node last = null;
 	
-	private class Node
-	{
+	private class Node {
 		Item item;
 		Node next, previous;
 	}
 	
-	public Deque()
-	{
+	public Deque() {
 		first = null;
 		last = null;
 		n = 0;
 	}
 
-	public boolean isEmpty()
-	{
+	public boolean isEmpty() {
 		return first == null;
 	}
 	
-	public int size()
-	{
+	public int size() {
 		return n;
 	}
 	
-	public void addFirst(Item item)
-	{
-		if(item == null) throw new NullPointerException();
+	public void addFirst(Item item) {
+		if (item == null) throw new NullPointerException();
+		
 		Node oldfirst = first;
 		first = new Node();
 		first.item = item;
@@ -40,9 +36,9 @@ public class Deque<Item> implements Iterable<Item> {
 		else oldfirst.previous = first;
 	}
 	
-	public void addLast(Item item)
-	{
-		if(item == null) throw new NullPointerException();
+	public void addLast(Item item) {
+		if (item == null) throw new NullPointerException();
+		
 		Node oldlast = last;
 		last = new Node();
 		last.item = item;
@@ -53,9 +49,9 @@ public class Deque<Item> implements Iterable<Item> {
 		else oldlast.next = last;
 	}
 	
-	public Item removeFirst()
-	{
+	public Item removeFirst() {
 		if(n == 0) throw new java.util.NoSuchElementException();
+		
 		Item item = first.item;
 		first = first.next;
 		if(!isEmpty()) first.previous = null;
@@ -64,35 +60,38 @@ public class Deque<Item> implements Iterable<Item> {
 		return item;
 	}
 	
-	public Item removeLast()
-	{
+	public Item removeLast() {
 		if(n == 0) throw new java.util.NoSuchElementException();
+		
 		Item item = last.item;
-		if(n > 1) {last = last.previous;
-		last.next = null;}
-        if(n==1) {first = null;
-        last = null;
-        }
+		if (n > 1) {
+		    last = last.previous;
+		    last.next = null;
+		} 
+                if(n==1) {
+		    first = null;
+                    last = null;
+                }
 		n--;
 		return item;
 	}
 	
-	public Iterator<Item> iterator()
-	{
+	public Iterator<Item> iterator() {
 		return new ListIterator();
 	}
-	private class ListIterator implements Iterator<Item>
-	{
+	
+	private class ListIterator implements Iterator<Item> {
 		private Node current = first;
 		
-		public boolean hasNext()
-		{
+		public boolean hasNext() {
 			return current != null;
 		}
-		public void remove() {throw new UnsupportedOperationException();}
-		public Item next()
-		{
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+		public Item next() {
 			if(current == null) throw new java.util.NoSuchElementException();
+			
 			Item item = current.item;
 			current = current.next;
 			return item;
