@@ -22,7 +22,7 @@ public class PercolationStats {
 					w++;
 				}
 			}
-			c[i] = (double) w/(q*q);
+			c[i] = (double) w / (q*q);
 		}
 	}
 	
