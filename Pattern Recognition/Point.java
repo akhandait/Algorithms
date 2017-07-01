@@ -1,7 +1,7 @@
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
 
-public class Point implements Comparable<Point>{
+public class Point implements Comparable<Point> {
 	private int x;
 	private int y;
 	
@@ -33,7 +33,7 @@ public class Point implements Comparable<Point>{
 	}
 	
 	public int compareTo(Point that) {
-		 if (this.y < that.y) return -1;
+             if (this.y < that.y) return -1;
 	     if (this.y > that.y) return 1;
 	     if (this.x < that.x) return -1;
 	     if (this.x > that.x) return 1;
@@ -45,7 +45,7 @@ public class Point implements Comparable<Point>{
 			if (this.y == that.y) return Double.NEGATIVE_INFINITY;
 			return Double.POSITIVE_INFINITY;
 		}
-		if (this.y == that.y) return 0;//return positive zero
+		if (this.y == that.y) return 0; //return positive zero
 		return (double) (that.y - this.y)/(that.x - this.x);
 	}
 	
