@@ -1,81 +1,77 @@
-import java.util.TreeSet;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.StdDraw;
 import java.util.ArrayList;
 
 public class PointSET {
-	private TreeSet<Point2D> tset;
+    
+	private final SET<Point2D> points;
 	
 	public PointSET() {
-		tset = new TreeSet<Point2D>();
+	    points = new SET<Point2D>();	
 	}
-
+	
 	public boolean isEmpty() {
-		return tset.isEmpty();
+		return points.isEmpty();
 	}
 	
 	public int size() {
-		return tset.size();
+		return points.size();
 	}
 	
 	public void insert(Point2D p) {
 		if (p == null) throw new java.lang.IllegalArgumentException();
-		tset.add(p);
+		
+		points.add(p);
 	}
 	
 	public boolean contains(Point2D p) {
 		if (p == null) throw new java.lang.IllegalArgumentException();
-		return tset.contains(p);
+		
+		return points.contains(p);
 	}
 	
 	public void draw() {
-		StdDraw.setPenRadius(0.015);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        
-		for (Point2D p : tset) {
-			StdDraw.point(p.x(), p.y());
+		StdDraw.setPenRadius(0.01);
+		StdDraw.setPenColor(StdDraw.BLACK);
+		
+		for (Point2D p : points) {
+			p.draw();
 		}
 	}
 	
 	public Iterable<Point2D> range(RectHV rect) {
 		if (rect == null) throw new java.lang.IllegalArgumentException();
 		
-		ArrayList<Point2D> list = new ArrayList<Point2D>();
-		
-		for (Point2D p : tset) {
-			if (rect.contains(p)) list.add(p);
+		ArrayList<Point2D> inRange = new ArrayList<Point2D>();
+		for (Point2D p : points) {
+			if (p.x() >= rect.xmin() && p.x() <= rect.xmax() &&
+				p.y() >= rect.ymin() && p.y() <= rect.ymax()) {
+				inRange.add(p);
+			}
 		}
-		return list;
+		
+		return inRange;
 	}
 	
 	public Point2D nearest(Point2D p) {
 		if (p == null) throw new java.lang.IllegalArgumentException();
+		if (points.isEmpty()) return null;
 		
-		Point2D clsofar = null;
-		double minsofar = 0;
-		
-		for (Point2D P : tset) {
-			if (clsofar == null) {
-				minsofar = p.distanceTo(P);
-				clsofar = P;
-			}
-			if (P.distanceTo(p) < minsofar) {
-				minsofar = p.distanceTo(P);
-				clsofar = P;
+		double minDist = 2;
+		Point2D nearest = new Point2D(-1, -1);
+		for (Point2D t : points) {
+			if (p.distanceTo(t) < minDist) {
+				nearest = t;
+				minDist = p.distanceTo(t);
 			}
 		}
 		
-		return clsofar;
+		return nearest;
 	}
 	
-    public static void main(String[] args) {
-    	PointSET ps = new PointSET();
-    	ps.insert(new Point2D(0.5, 0.7));
-    	ps.insert(new Point2D(0.2, 0.2));
-    	ps.insert(new Point2D(0.3, 0.3));
-    	Point2D q = new Point2D(0.5, 0.5);
-    	Point2D w = ps.nearest(q);		
-    	StdDraw.setPenRadius(0.015);
-    	StdDraw.setPenColor(StdDraw.BLACK);
-    	StdDraw.point(w.x(), w.y());
-    }
+//	public static void main(String[] args) {
+//      
+//	}
 }
