@@ -1,8 +1,13 @@
 import time
 import random
 
+#######################
+### Selection Sort. ###
+#######################
+
 class Selection:
 
+    # Sort the given array.
     def sort(self, array):
         l = len(array)
         for i in range(l):
@@ -12,11 +17,15 @@ class Selection:
                     minIndex = j
             self.__exchange(array, i, minIndex)
 
+    """
+    HELPER FUNCTIONS
+    """
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
         array[b] = temp
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     s = Selection()
@@ -32,9 +41,13 @@ if __name__ == "__main__":
     print("Time taken to sort 8000 numbers -> " + str(time.time() - startTime) +
         " seconds")
 
+#######################
+### Insertion Sort. ###
+#######################
 
-class Insertion():
+class Insertion:
 
+    # Sort the given array.
     def sort(self, array):
         l = len(array)
         for i in range(1, l):
@@ -45,7 +58,7 @@ class Insertion():
                     break
 
     # For practical improvement in mergesort an quicksort.
-    def sort(self, array, low, high):
+    def sortLH(self, array, low, high):
         for i in range(low + 1, high + 1):
             for j in reversed(range(low, i)):
                 if array[j + 1] < array[j]:
@@ -53,11 +66,15 @@ class Insertion():
                 else:
                     break
 
+    """
+    HELPER FUNCTIONS
+    """
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
         array[b] = temp
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     i = Insertion()
@@ -101,9 +118,13 @@ if __name__ == "__main__":
     print("Time taken to sort 8000 numbers -> " + str(time.time() - startTime) +
         " seconds")
 
+###################
+### Shell Sort. ###
+###################
 
 class Shell:
 
+    # Sort the given array.
     def sort(self, array):
         l = len(array)
         h = 1
@@ -121,11 +142,15 @@ class Shell:
                         break
             h //= 3
 
+    """
+    HELPER FUNCTIONS
+    """
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
         array[b] = temp
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     s = Shell()

@@ -2,8 +2,23 @@ import time
 import random
 from elementary_sorts import Insertion
 
+##################
+### Mergesort. ###
+##################
+
 class Merge:
 
+    # Sort the given array.
+    def sort(self, array):
+        aux = [None] * len(array)
+        low = 0
+        high = len(array) - 1
+
+        self.__sort(array, aux, 0, len(array) - 1)
+
+    """
+    HELPER FUNCTIONS
+    """
     def __merge(self, a, aux, low, mid, high):
         for i in range(low, high + 1):
             aux[i] = a[i]
@@ -27,22 +42,15 @@ class Merge:
 
         assert all(a[i] <= a[i+1] for i in range(low, high))
 
-    def sort(self, array):
-        aux = [None] * len(array)
-        low = 0
-        high = len(array) - 1
-
-        self.__sort(array, aux, 0, len(array) - 1)
-
     def __sort(self, a, aux, low, high):
         # if high <= low:
         #     return
 
         # Practical improvement: Use insertion sort for small subarrays.
-        self.i = Insertion()
+        self.insertion = Insertion()
         cutoff = 7
         if high - low + 1 <= cutoff:
-            self.i.sort(a, low, high)
+            self.insertion.sortLH(a, low, high)
             return
 
         mid = low + (high - low) // 2
@@ -55,8 +63,7 @@ class Merge:
 
         self.__merge(a, aux, low, low + (high - low) // 2, high)
 
-
-
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     M = Merge()
@@ -72,10 +79,13 @@ if __name__ == "__main__":
     print("Time taken to sort 800000 numbers -> " + str(time.time() - startTime) +
         " seconds")
 
+############################
+### Bottom-up Mergesort. ###
+############################
 
-# Bottom-up mergesort.
 class MergeBU(Merge):
 
+    # Sort the given array.
     def sort(self, array):
         l = len(array)
         aux = [None] * l
@@ -89,6 +99,7 @@ class MergeBU(Merge):
             if i >= l:
                 break
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     Mb = MergeBU()

@@ -2,6 +2,7 @@ import time
 from random import randint
 from binary_search import binarySearch
 
+# 3-Sum.
 def threeSum(array):
     array.sort()
     count = 0
@@ -15,18 +16,21 @@ def threeSum(array):
 
     return count
 
-a = list(range(2000))
-a[20] = -40
-start_time = time.time()
-print(threeSum(a))
-print("Time taken -> " + str(time.time() - start_time))
+# Experiments to check time complexity.
+if __name__ == "__main__":
 
-# The following will take slightly more than 4 times the time.(N**2LogN)
-a = list(range(4000))
-a[20] = -40
-start_time = time.time()
-print(threeSum(a))
-print("Time taken -> " + str(time.time() - start_time))
+    a = list(range(2000))
+    a[20] = -40
+    start_time = time.time()
+    print(threeSum(a))
+    print("Time taken -> " + str(time.time() - start_time))
+
+    # The following will take slightly more than 4 times the time.(N**2LogN)
+    a = list(range(4000))
+    a[20] = -40
+    start_time = time.time()
+    print(threeSum(a))
+    print("Time taken -> " + str(time.time() - start_time))
 
 
 # 3-Sum in quadratic time.
@@ -50,15 +54,18 @@ def threeSumQuad(array):
 
     return count
 
-a = list(range(2000))
-a[20] = -40
-start_time = time.time()
-print(threeSum(a))
-print("Time taken -> " + str(time.time() - start_time))
+# Experiments to check time complexity.
+if __name__ == "__main__":
 
-# The following will take 4 times the time.(N**2)
-a = list(range(4000))
-a[20] = -40
-start_time = time.time()
-print(threeSum(a))
-print("Time taken -> " + str(time.time() - start_time))
+    a = list(range(2000))
+    a[20] = -40
+    start_time = time.time()
+    print(threeSum(a))
+    print("Time taken -> " + str(time.time() - start_time))
+
+    # The following will take 4 times the time.(N**2)
+    a = list(range(4000))
+    a[20] = -40
+    start_time = time.time()
+    print(threeSum(a))
+    print("Time taken -> " + str(time.time() - start_time))

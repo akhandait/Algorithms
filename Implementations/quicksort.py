@@ -2,8 +2,35 @@ import time
 import random
 from elementary_sorts import Insertion
 
+#################################
+### Quicksort / Quick-Select. ###
+#################################
+
 class Quick:
 
+    # Sort the given array.
+    def sort(self, array):
+        random.shuffle(array) # Shuffle needed for performance gaurantee.
+        self.__sort(array, 0, len(array) - 1)
+
+    # Return the kth smallest item from the given array.
+    def select(self, array, k):
+        random.shuffle(array) # Shuffle needed for performance gaurantee.
+        low = 0
+        high = len(array) - 1
+        while (high > low):
+            j = self.__partition(array, low, high)
+
+            if k < j:
+                high = j - 1
+            elif k > j:
+                low = j + 1
+            else:
+                return array[k]
+
+    """
+    HELPER FUNCTIONS
+    """
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
@@ -36,41 +63,26 @@ class Quick:
         self.__exchange(array, low, j)
         return j
 
-    def sort(self, array):
-        random.shuffle(array)
-        self.__sort(array, 0, len(array) - 1)
-
     def __sort(self, array, low, high):
         if high <= low:
             return
 
         # Practical improvement: Use insertion sort for small subarrays.
-        # This doesn't seem to work well, in case of mergesort, it does.
-        # self.i = Insertion()
+
+        # self.insertion = Insertion()
         # cutoff = 7
         # if high - low + 1 <= cutoff:
-        #     self.i.sort(array, low, high)
+        #     self.insertion.sortLH(array, low, high)
         #     return
+
+        # This doesn't seem to work well, so commented out.
+        # In case of mergesort, it does work well.
 
         j = self.__partition(array, low, high)
         self.__sort(array, low, j - 1)
         self.__sort(array, j + 1, high)
 
-    def select(self, array, k):
-        random.shuffle(array)
-        low = 0
-        high = len(array) - 1
-        while (high > low):
-            j = self.__partition(array, low, high)
-
-            if k < j:
-                high = j - 1
-            elif k > j:
-                low = j + 1
-            else:
-                return array[k]
-
-
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     Q = Quick()
@@ -100,12 +112,20 @@ if __name__ == "__main__":
     print("Time taken -> " + str(time.time() - startTime) + " seconds")
 
 
+#######################################################
+### 3-way Quicksort.(Dijkstra's 3-way partitioning) ###
+#######################################################
+
 class QuickThreeWay(Quick):
 
+    # Sort the given array.
     def sort(self, array):
-        random.shuffle(array)
+        random.shuffle(array) # Shuffle needed for performance gaurantee.
         self.__sort(array, 0, len(array) - 1)
 
+    """
+    HELPER FUNCTIONS
+    """
     def __sort(self, array, low, high):
         if high <= low:
             return
@@ -113,7 +133,6 @@ class QuickThreeWay(Quick):
         i = low
         lt = low
         gt = high
-
         v = array[low]
 
         while i <= gt:
@@ -130,6 +149,7 @@ class QuickThreeWay(Quick):
         self.__sort(array, low, lt - 1)
         self.__sort(array, gt + 1, high)
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
 
     Qt = QuickThreeWay()

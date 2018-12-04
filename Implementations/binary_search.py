@@ -1,7 +1,7 @@
 import time
 from random import randint
 
-# Iterative implementation.
+# Iterative implementation of Binary Search.
 def binarySearch(array, key):
     low = 0
     high = len(array) - 1
@@ -18,7 +18,9 @@ def binarySearch(array, key):
 
     return -1
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
+
     a = list(range(100000))
     start_time = time.time()
     for i in range(50000):
@@ -32,7 +34,7 @@ if __name__ == "__main__":
         binarySearch(a, randint(0, 199999))
     print("Time taken -> " + str(time.time() - start_time))
 
-# Recursive implementation.
+# Recursive implementation of Binary Search.
 def binarySearchRecur(array, low, high, key):
     if low > high:
         return -1
@@ -47,7 +49,9 @@ def binarySearchRecur(array, low, high, key):
     else:
         return mid
 
+# Experiments to check time complexity.
 if __name__ == "__main__":
+
     a = list(range(100000))
     start_time = time.time()
     for i in range(50000):
