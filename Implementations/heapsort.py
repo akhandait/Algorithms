@@ -20,9 +20,9 @@ class Heap:
             n -= 1
             self.__sink(array, 1, n)
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __exchange(self, array, a, b):
         temp = array[a - 1]
         array[a - 1] = array[b - 1]

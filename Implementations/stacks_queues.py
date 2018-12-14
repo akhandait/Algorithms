@@ -82,9 +82,9 @@ class ResizingArrayStack:
 
         return item
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __resize(self, capacity):
         copy = [None] * capacity
         for i in range(self.size):
@@ -181,9 +181,9 @@ class ResizingArrayQueue:
 
         return item
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __resize(self, capacity):
         assert capacity > self.size
 

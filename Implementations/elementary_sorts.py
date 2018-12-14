@@ -17,9 +17,9 @@ class Selection:
                     minIndex = j
             self.__exchange(array, i, minIndex)
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
@@ -66,9 +66,9 @@ class Insertion:
                 else:
                     break
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
@@ -142,9 +142,9 @@ class Shell:
                         break
             h //= 3
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]

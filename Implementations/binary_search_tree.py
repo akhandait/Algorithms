@@ -76,15 +76,28 @@ class BinarySearchTree:
     def min(self):
         return self.__min(self.root)
 
+    # Return the number of keys between given high and low keys(1d range count).
+    def size(self, low, high):
+        if self.get(high) != None:
+            return self.rank(high) - self.rank(low) + 1
+        return self.rank(high) - self.rank(low)
+
+    # Return list of keys between low and high(1d range search).
+    def rangeSearch(self, low, high):
+        keysList = []
+        self.__rangeSearch(self.root, low, high, keysList)
+
+        return keysList
+
     # Inorder iterator for the binary search tree.
     def __iter__(self):
         self.inorder = []
         self.__inorder(self.root, self.inorder)
         return iter(self.inorder)
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __size(self, node):
         if node == None:
             return 0
@@ -180,4 +193,16 @@ class BinarySearchTree:
             return node
 
         return self.__min(node.left)
+
+    def __rangeSearch(self, node, low, high, keysList):
+        if node == None:
+            return
+
+        if low < node.key:
+            self.__rangeSearch(node.left, low, high, keysList)
+        if high > node.key:
+            self.__rangeSearch(node.right, low, high, keysList)
+
+        if low <= node.key and high >= node.key:
+            keysList.append(node.key)
 

@@ -16,9 +16,9 @@ class Merge:
 
         self.__sort(array, aux, 0, len(array) - 1)
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __merge(self, a, aux, low, mid, high):
         for i in range(low, high + 1):
             aux[i] = a[i]

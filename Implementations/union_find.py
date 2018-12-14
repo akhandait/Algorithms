@@ -93,9 +93,9 @@ class QuickUnionUF:
         j = self.__root(q)
         self.id[i] = j
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __root(self, i):
         while (i != self.id[i]):
             i = self.id[i]
@@ -193,9 +193,9 @@ if __name__ == "__main__":
     print("Weighted quick-union 10000 takes %s seconds" % (time.time() - start_time))
 
 
-#########################################################
-### Weighted Quick Union Path Compression Union Find. ###
-#########################################################
+##############################################################
+### Weighted Quick Union with Path Compression Union Find. ###
+##############################################################
 
 class WeightedQuickUnionPCUF(WeightedQuickUnionUF):
 

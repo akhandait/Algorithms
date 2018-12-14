@@ -48,9 +48,9 @@ class UnorderedMaxPQ:
 
         return m
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __resize(self, capacity):
         temp = [None] * capacity
         for i in range(self.N):
@@ -119,9 +119,9 @@ class MaxPQ(UnorderedMaxPQ):
 
         return m
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __swim(self, k):
         while (k > 1 and self.pq[k // 2] < self.pq[k]):
             self._UnorderedMaxPQ__exchange(k, k // 2)

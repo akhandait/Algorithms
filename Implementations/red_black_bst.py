@@ -43,12 +43,14 @@ class LLRedBlackBST(BinarySearchTree):
                        given key.
     6) rank()       -> The number of keys in the tree less than the given key.
     7) min()        -> Return the node with the smallest key.
-    8) __iter__()   -> Inorder iterator for the binary search tree.
+    8) rangeSearch()-> Return list of keys between low and high(1d range
+                       search).
+    9) __iter__()   -> Inorder iterator for the binary search tree.
     """
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     # True if the link to a node is red.
     def __isRed(self, node):
         if node == None:

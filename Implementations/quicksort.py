@@ -28,9 +28,9 @@ class Quick:
             else:
                 return array[k]
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __exchange(self, array, a, b):
         temp = array[a]
         array[a] = array[b]
@@ -123,9 +123,9 @@ class QuickThreeWay(Quick):
         random.shuffle(array) # Shuffle needed for performance gaurantee.
         self.__sort(array, 0, len(array) - 1)
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __sort(self, array, low, high):
         if high <= low:
             return

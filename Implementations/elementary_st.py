@@ -80,9 +80,9 @@ class LinkedST:
         raise RuntimeError('Key not in symbol table.')
 
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __get(self, key):
         currentNode = self.firstNode
 
@@ -198,9 +198,9 @@ class BinarySearchST:
 
         return low
 
-    """
-    HELPER FUNCTIONS
-    """
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __resize(self, capacity):
         keysCopy = [None] * capacity
         valuesCopy = [None] * capacity
