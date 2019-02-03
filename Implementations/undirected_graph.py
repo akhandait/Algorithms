@@ -1,12 +1,14 @@
 from stacks_queues import ResizingArrayQueue
 
+# Design pattern: Decouple graph data types from graph processing.
+
 ##########################
 ### Graph(Undirected). ###
 ##########################
 
 class Graph:
 
-    # Creat an empty graph with nV vertices.
+    # Create an empty graph with nV vertices.
     def __init__(self, nV):
         # Number of vertices in the graph(size of the graph).
         self.nV = nV
@@ -30,7 +32,7 @@ class Graph:
     def adj(self, v):
         return iter(self.adjList[v])
 
-    # Return the degree of v.
+    # Return the degree of vertex v.
     def degree(self, v):
         return len(self.adjList[v])
 
@@ -60,118 +62,47 @@ class Graph:
         return count
 
 
+#############################
+### Connected Components. ###
+#############################
 
-class DepthFirstPaths:
+class ConnectedComponents:
 
-    def __init__(self, graph, v):
-        self.marked = [False] * graph.V()
-        self.edgeTo = [None] * graph.V()
-        self.s = v
-
-        self.__depthFirstSearch(graph, v)
-
-
-    def __depthFirstSearch(self, graph, v):
-        self.marked[v] = True
-
-        for w in graph.adj(v):
-            if self.marked[w]:
-                continue
-
-            self.edgeTo[w]= v
-            self.__depthFirstSearch(graph, w)
-
-    def hasPathTo(self, v):
-        return self.marked[v]
-
-    def pathTo(self, v):
-        if not self.hasPathTo(v):
-            return None
-
-        path = []
-        while v != self.s:
-            path.append(v)
-            v = self.edgeTo[v]
-        path.append(self.s)
-
-        return iter(path[::-1])
-
-
-class BreadthFirstPaths:
-
-    def __init__(self, graph, v):
-        self.edgeTo = [None] * graph.V()
-        self.dist = [None] * graph.V()
-        self.marked = [False] * graph.V()
-        self.queue = ResizingArrayQueue()
-        self.s = v
-
-        self.queue.enqueue(v)
-        self.marked[v] = True
-        self.dist[v] = 0
-
-        while not self.queue.isEmpty():
-            w = self.queue.dequeue()
-            for q in graph.adj(w):
-                if self.marked[q]:
-                    continue
-
-                self.queue.enqueue(q)
-                self.marked[q] = True
-                self.dist[q] = self.dist[w] + 1
-                self.edgeTo[q] = w
-
-
-class CC:
-
+    # Find connected components in the given graph.
     def __init__(self, graph):
         self.marked = [False] * graph.V()
-        self.ccId = [None] * graph.V()
-        self.c = 0
+        # ID of connected component each vertex belongs to (will be in range [0, nCC-1]).
+        self.idCC = [None] * graph.V()
+        self.nCC = 0 # Number of connected components.
 
         for v in range(graph.V()):
             if self.marked[v]:
                 continue
 
             self.__depthFirstSearch(graph, v)
-            self.c += 1
+            self.nCC += 1
 
+    # Return true if vertices v and w are connected.
+    def connected(self, v, w):
+        return self.idCC[v] == self.idCC[w]
+
+    # Return the number of connected components in the graph.
+    def count(self):
+        return self.nCC
+
+    def id(self, v):
+        return self.idCC[v]
+
+    ###
+    ### HELPER FUNCTIONS
+    ###
     def __depthFirstSearch(self, graph, v):
         self.marked[v] = True
-        self.ccId[v] = self.c
+        self.idCC[v] = self.nCC
 
         for w in graph.adj(v):
             if not self.marked[w]:
                 self.__depthFirstSearch(graph, w)
-
-    def connected(self, v, w):
-        return self.ccId[v] == self.ccId[w]
-
-    def count(self):
-        return self.c
-
-# graph = Graph(13)
-# graph.addEdge(0, 5)
-# graph.addEdge(5, 3)
-# graph.addEdge(3, 4)
-# graph.addEdge(5, 4)
-# graph.addEdge(6, 4)
-# graph.addEdge(0, 6)
-# graph.addEdge(0, 2)
-# graph.addEdge(1, 0)
-# graph.addEdge(7, 8)
-# graph.addEdge(9, 10)
-# graph.addEdge(9, 11)
-# graph.addEdge(12, 11)
-# graph.addEdge(9, 12)
-
-# cc = CC(graph)
-
-# for Id in cc.ccId:
-#     print(Id)
-
-# print('\n' + str(cc.count()))
-# print('\n' + str(cc.connected(0, 6)))
 
 
 

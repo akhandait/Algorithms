@@ -34,17 +34,13 @@ class LLRedBlackBST(BinarySearchTree):
     Following functions from the BinarySearchTree class need no change:
 
     1) size()       -> Return the size of the tree.
-    2) get(key)     -> Return value corresponding to given key, or None if no
-                       such key.
+    2) get(key)     -> Return value corresponding to given key, or None if no such key.
     3) delete(key)  -> Delete the value, key pair associated with the given key.
-    4) deleteMin()  -> Delete the value, key pair associated with the smallest
-                       key from the tree.
-    5) floor()      -> Return the largest key in the tree less than or equal to
-                       given key.
+    4) deleteMin()  -> Delete the value, key pair associated with the smallest key from the tree.
+    5) floor()      -> Return the largest key in the tree less than or equal to given key.
     6) rank()       -> The number of keys in the tree less than the given key.
     7) min()        -> Return the node with the smallest key.
-    8) rangeSearch()-> Return list of keys between low and high(1d range
-                       search).
+    8) rangeSearch()-> Return list of keys between low and high(1d range search).
     9) __iter__()   -> Inorder iterator for the binary search tree.
     """
 

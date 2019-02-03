@@ -31,4 +31,12 @@ Assignments of the Algorithms 1 course of Coursera and implementations of all th
   * Binary Search Symbol Table
 * [Binary Search Tree](Implementations/binary_search_tree.py)
 * [Red-Black Binary Search Tree](Implementations/red_black_bst.py)
-* 
+* Graphs:
+  * [Undirected Graph](Implementations/undirected_graph.py):
+    * Connected Components
+  * [Directed Graph](Implementations/directed_graph.py):
+    * Depth-first order
+    * Strong Connected Components(Kosaraju-Sharir algorithm)
+  * [Graph Search](Implementations/graph_search.py):
+    * Depth-first Search
+    * Breadth-first Search
